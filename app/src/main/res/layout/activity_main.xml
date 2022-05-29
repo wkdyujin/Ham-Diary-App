@@ -15,4 +15,14 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/main_writing_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/main_calendar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="오늘 일기 쓰기"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
