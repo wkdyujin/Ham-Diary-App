@@ -54,5 +54,6 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("week", week)
             startActivity(intent)
         }
+
     }
 }
