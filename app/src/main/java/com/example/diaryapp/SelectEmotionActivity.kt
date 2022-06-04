@@ -26,5 +26,11 @@ class SelectEmotionActivity : AppCompatActivity() {
             intent.putExtra("week", week)
             startActivity(intent)
         }
+
+        binding.emotionHappyIb.setOnClickListener {
+            // 이미지 사진 크기 키워야 함
+            binding.selectEmotionBtn.isEnabled = true
+
+        }
     }
 }

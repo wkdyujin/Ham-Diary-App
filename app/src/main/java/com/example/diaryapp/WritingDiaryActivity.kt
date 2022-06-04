@@ -1,29 +1,22 @@
 package com.example.diaryapp
 
-import android.Manifest
-import android.app.Activity
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.example.diaryapp.databinding.ActivityWritingDiaryBinding
-import java.lang.Exception
+import kotlinx.coroutines.*
+import org.w3c.dom.Entity
 
 class WritingDiaryActivity: AppCompatActivity() {
 
     lateinit var binding: ActivityWritingDiaryBinding
-    private val OPEN_GALLERY = 1
+//    private val OPEN_GALLERY = 1
+//    val db = DiaryDatabase.getDatabase(applicationContext) // 얘가 문제였다 (왜?)
+    val diaryDB = DiaryDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val binding = ActivityWritingDiaryBinding.inflate(layoutInflater)
+        binding = ActivityWritingDiaryBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
@@ -55,35 +48,55 @@ class WritingDiaryActivity: AppCompatActivity() {
             }
         })
 
-        // 갤러리에서 사진 추가 (오류)
-        binding.writingDiaryAddImgBtn.setOnClickListener{
-            openGallery()
-        }
+//        // db에 일기 추가
+//        binding.writingDiarySubmitBtn.setOnClickListener {
+//            val diary = DiaryTable(
+//                year.toString().toInt(), month.toString().toInt(), day.toString().toInt(), week.toString()
+//            )
+//            CoroutineScope(Dispatchers.IO).launch {
+//                db!!.DiaryDao().insert(diary)
+//                val newList = CoroutineScope(Dispatchers.IO).async {
+//                    db!!.DiaryDao().selectAll()
+//                }.await()
+//            }
+//        }
+
+//        binding.writingDiarySubmitBtn.setOnClickListener {
+//            val diary = DiaryTable(
+//                year.toString().toInt(), month.toString().toInt(), day.toString().toInt(), week.toString()
+//            )
+//            db!!.DiaryDao().insert(diary)
+//        }
+
+//        // 갤러리에서 사진 추가 (오류)
+//        binding.writingDiaryAddImgBtn.setOnClickListener{
+//            openGallery()
+//        }
     }
 
-    private fun openGallery() {
-        val intent = Intent(Intent.ACTION_GET_CONTENT)
-        intent.type = "image/*"
-        startActivityForResult(intent, OPEN_GALLERY)
-    }
-
-    @Override
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if(requestCode == RESULT_OK) { //여기 안 됨
-            if(requestCode == OPEN_GALLERY) {
-                var currentImageUrl: Uri? = data?.data
-                try {
-                    val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, currentImageUrl)
-                    binding.writingDiaryImgIv.visibility = View.VISIBLE
-                    binding.writingDiaryImgIv.setImageBitmap(bitmap)
-                } catch (e:Exception) {
-                    e.printStackTrace()
-                }
-            }
-        } else {
-            Log.d ("ActivityResult", "something wrong")
-        }
-    }
+//    private fun openGallery() {
+//        val intent = Intent(Intent.ACTION_GET_CONTENT)
+//        intent.type = "image/*"
+//        startActivityForResult(intent, OPEN_GALLERY)
+//    }
+//
+//    @Override
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//
+//        if(requestCode == RESULT_OK) { //여기 안 됨
+//            if(requestCode == OPEN_GALLERY) {
+//                var currentImageUrl: Uri? = data?.data
+//                try {
+//                    val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, currentImageUrl)
+//                    binding.writingDiaryImgIv.visibility = View.VISIBLE
+//                    binding.writingDiaryImgIv.setImageBitmap(bitmap)
+//                } catch (e:Exception) {
+//                    e.printStackTrace()
+//                }
+//            }
+//        } else {
+//            Log.d ("ActivityResult", "something wrong")
+//        }
+//    }
 }

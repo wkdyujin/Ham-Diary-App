@@ -6,14 +6,14 @@ import androidx.room.Dao
 @Dao
 interface DiaryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(diary: Diary)
+    fun insert(diary: DiaryTable)
 
     @Update
-    fun update(diary: Diary)
+    fun update(diary: DiaryTable)
 
     @Delete
-    fun delete(diary: Diary)
+    fun delete(diary: DiaryTable)
 
-    @Query("SELECT * FROM Diary")
-    fun selectAll(): MutableList<Diary>
+    @Query("SELECT * FROM DiaryTable")
+    fun selectAll(): MutableList<DiaryTable>
 }
