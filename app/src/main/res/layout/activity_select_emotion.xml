@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/grid_white_img">
 
     <LinearLayout
         android:id="@+id/select_emotion_title_layout"
@@ -47,61 +48,61 @@
         app:layout_constraintBottom_toTopOf="@id/select_emotion_btn">
         <ImageButton
             android:id="@+id/emotion_happy_ib"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:src="@drawable/sample_img"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/emotion_happy_img"
             android:scaleType="fitXY"
             android:background="@android:color/transparent"/>
         <ImageButton
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:src="@drawable/sample_img"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/emotion_excited_img"
             android:scaleType="fitXY"
             android:background="@android:color/transparent"
             android:layout_marginStart="20dp" />
         <ImageButton
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:src="@drawable/sample_img"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/emotion_proud_img"
             android:scaleType="fitXY"
             android:background="@android:color/transparent"
             android:layout_marginStart="20dp"/>
         <ImageButton
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:src="@drawable/sample_img"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/emotion_fine_img"
             android:scaleType="fitXY"
             android:background="@android:color/transparent"
             android:layout_marginStart="20dp"/>
 
         <!--  두번째 줄  -->
         <ImageButton
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:src="@drawable/sample_img"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/emotion_stress_img"
             android:scaleType="fitXY"
             android:background="@android:color/transparent"
             android:layout_marginTop="32dp"/>
         <ImageButton
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:src="@drawable/sample_img"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/emotion_worried_img"
             android:scaleType="fitXY"
             android:background="@android:color/transparent"
             android:layout_marginTop="32dp"
             android:layout_marginStart="20dp"/>
         <ImageButton
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:src="@drawable/sample_img"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/emotion_sad_img"
             android:scaleType="fitXY"
             android:background="@android:color/transparent"
             android:layout_marginTop="32dp"
             android:layout_marginStart="20dp"/>
         <ImageButton
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:src="@drawable/sample_img"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/emotion_tired_img"
             android:scaleType="fitXY"
             android:background="@android:color/transparent"
             android:layout_marginTop="32dp"
