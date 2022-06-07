@@ -19,6 +19,7 @@
         <activity android:name=".SelectEmotionActivity"></activity>
         <activity android:name=".WritingDiaryActivity" android:windowSoftInputMode="adjustResize">
         </activity>
+        <activity android:name=".ReadDiaryActivity"></activity>
 
         <activity
             android:name=".SplashActivity"

@@ -1,5 +1,6 @@
 package com.example.diaryapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -19,6 +20,8 @@ class WritingDiaryActivity: AppCompatActivity() {
         binding = ActivityWritingDiaryBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        val diaryDB = DiaryDatabase.getDatabase(applicationContext)
 
         val year = intent.getStringExtra("year")
         val month = intent.getStringExtra("month")
@@ -48,17 +51,25 @@ class WritingDiaryActivity: AppCompatActivity() {
             }
         })
 
-//        // db에 일기 추가
+
+
+////        // db에 일기 추가
+//        binding.writingDiarySubmitBtn.setOnClickListener {
+//            CoroutineScope(Dispatchers.Default).launch {
+//                diaryDB?.DiaryDao()?.insert(DiaryTable(year.toString().toInt(),
+//                    month.toString().toInt(), day.toString().toInt(), week.toString().toInt()))
+//            }
+//        }
+
 //        binding.writingDiarySubmitBtn.setOnClickListener {
 //            val diary = DiaryTable(
-//                year.toString().toInt(), month.toString().toInt(), day.toString().toInt(), week.toString()
+//                year.toString().toInt(),
+//                month.toString().toInt(),
+//                day.toString().toInt(),
+//                week.toString()
 //            )
-//            CoroutineScope(Dispatchers.IO).launch {
-//                db!!.DiaryDao().insert(diary)
-//                val newList = CoroutineScope(Dispatchers.IO).async {
-//                    db!!.DiaryDao().selectAll()
-//                }.await()
-//            }
+//            DiaryDatabase.getDatabase(this)!!.DiaryDao().insert(diary)
+//            startActivity(Intent(this, MainActivity::class.java))
 //        }
 
 //        binding.writingDiarySubmitBtn.setOnClickListener {
