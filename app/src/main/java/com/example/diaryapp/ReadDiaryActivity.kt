@@ -1,5 +1,6 @@
 package com.example.diaryapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -18,19 +19,27 @@ class ReadDiaryActivity : AppCompatActivity() {
 
         binding.writingDiaryContentEt.text = intent.getStringExtra("content")
         val date = intent.getStringExtra("selectedDate")!!.toInt()
-        Log.d("ReadActivity_tag", date.toString())
 
         val diaryDB = DiaryDatabase.getDatabase(applicationContext)!!
         CoroutineScope(Dispatchers.Default).launch { // launch: 리턴 값 없음
-            val res = CoroutineScope(Dispatchers.IO).async { // IO: 디비 접근, async: 리턴 값 있음
+            val diaryContent = CoroutineScope(Dispatchers.IO).async { // IO: 디비 접근, async: 리턴 값 있음
                 val year = diaryDB!!.DiaryDao().getYear(date)
                 val month = diaryDB!!.DiaryDao().getMonth(date)
                 val day = diaryDB!!.DiaryDao().getDay(date)
+                val content = diaryDB!!.DiaryDao().getDiaryContent(date)
                 binding.writingDiaryDateTv.text = "${year}년 ${month}월 ${day}일"
                 val dayOfWeek = diaryDB!!.DiaryDao().getDayOfWeek(date)
                 binding.writingDiaryDayOfWeekTv.text = dayOfWeek
-                binding.writingDiaryContentEt.text = diaryDB!!.DiaryDao().getDiaryContent(date)
+                binding.writingDiaryContentEt.text = content
             }.await()
+
+            // 텍스트 누르면 글 수정
+            binding.writingDiaryContentEt.setOnClickListener {
+                val intent = Intent(this@ReadDiaryActivity, WritingDiaryActivity::class.java)
+                intent.putExtra("diaryContent", diaryContent.toString())
+                startActivity(intent)
+            }
         }
+
     }
 }

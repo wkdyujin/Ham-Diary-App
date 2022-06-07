@@ -73,13 +73,12 @@ class MainActivity : AppCompatActivity() {
 
                 if (diaryContent != null) {
                     val intent = Intent(this@MainActivity, ReadDiaryActivity::class.java)
-                    Log.d("tag", selectedDate.toInt().toString())
                     intent.putExtra("selectedDate", selectedDate)
                     intent.putExtra("content", binding.content.text)
                     startActivity(intent)
                 }
                 else {
-                    Log.d("tag","설마 else문 실행 안되나? 으아아악 이게 출력되면 된 거다")
+//                    Log.d("tag","설마 else문 실행 안되나? 으아아악 이게 출력되면 된 거다")
                     val dateformat = SimpleDateFormat("yyyyMMdd").parse(selectedDate)
                     val week: String = SimpleDateFormat("EEEE", Locale.KOREA).format(dateformat)
                     intent.putExtra("selectedDate", selectedDate?.toInt())
@@ -87,24 +86,6 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
             }
-
-
-//            Log.d("tag", diaryContent) // --> 아무것도 출력되지 않는다. (스레드가 꼬여서?)
-//
-//            // 선택된 날짜에 일기가 없다 > 일기를 쓰는 액티비티
-//            if (diaryContent.equals("")) {
-//                val dateformat = SimpleDateFormat("yyyyMMdd").parse(selectedDate)
-//                val week: String = SimpleDateFormat("EEEE", Locale.KOREA).format(dateformat)
-//                intent.putExtra("date", selectedDate.toInt())
-//                intent.putExtra("week", week)
-//                startActivity(intent)
-//            }
-//            else { // 일기가 있다 > 일기를 보여주는 액티비티
-//                val intent = Intent(this, ReadDiaryActivity::class.java)
-//                intent.putExtra("date", selectedDate.toInt())
-//                intent.putExtra("content", binding.content.text)
-//                startActivity(intent)
-//            }
 
 
         }
@@ -132,17 +113,15 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("week", week)
             startActivity(intent)
 
-            var diaryContent = ""
+            var diaryContent: String?
             // 선택된 날짜에 이미 쓴 일기가 있다면 diaryContent에 그 내용을 넣는다
             CoroutineScope(Dispatchers.Default).launch {
                 diaryContent = CoroutineScope(Dispatchers.IO).async {
                     diaryDB!!.DiaryDao().getDiaryContent(selectedDate.toInt())
                 }.await()
 
-                Log.d("tag", diaryContent)
-                if (diaryContent != "") {
+                if (diaryContent != null) {
                     val intent = Intent(this@MainActivity, ReadDiaryActivity::class.java)
-                    Log.d("tag", selectedDate.toInt().toString())
                     intent.putExtra("selectedDate", selectedDate)
                     intent.putExtra("content", binding.content.text)
                     startActivity(intent)
