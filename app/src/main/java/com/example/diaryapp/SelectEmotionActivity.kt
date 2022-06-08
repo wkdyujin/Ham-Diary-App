@@ -2,6 +2,7 @@ package com.example.diaryapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.diaryapp.databinding.ActivitySelectEmotionBinding
 
@@ -12,6 +13,8 @@ class SelectEmotionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        val selectedDate = intent.getStringExtra("selectedDate")
+
         val year = intent.getStringExtra("year")
         val month = intent.getStringExtra("month")
         val day = intent.getStringExtra("day")
@@ -20,6 +23,7 @@ class SelectEmotionActivity : AppCompatActivity() {
 
         binding.selectEmotionBtn.setOnClickListener {
             val intent = Intent(this, WritingDiaryActivity::class.java)
+            intent.putExtra("selectedDate", selectedDate)
             intent.putExtra("year", year)
             intent.putExtra("month", month)
             intent.putExtra("day", day)

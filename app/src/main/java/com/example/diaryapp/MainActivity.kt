@@ -78,10 +78,9 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
                 else {
-//                    Log.d("tag","설마 else문 실행 안되나? 으아아악 이게 출력되면 된 거다")
                     val dateformat = SimpleDateFormat("yyyyMMdd").parse(selectedDate)
                     val week: String = SimpleDateFormat("EEEE", Locale.KOREA).format(dateformat)
-                    intent.putExtra("selectedDate", selectedDate?.toInt())
+                    intent.putExtra("selectedDate", selectedDate)
                     intent.putExtra("week", week)
                     startActivity(intent)
                 }
@@ -109,10 +108,6 @@ class MainActivity : AppCompatActivity() {
             }
             val selectedDate = year + month + day
 
-            intent.putExtra("date", selectedDate)
-            intent.putExtra("week", week)
-            startActivity(intent)
-
             var diaryContent: String?
             // 선택된 날짜에 이미 쓴 일기가 있다면 diaryContent에 그 내용을 넣는다
             CoroutineScope(Dispatchers.Default).launch {
@@ -129,7 +124,7 @@ class MainActivity : AppCompatActivity() {
                 else {
                     val dateformat = SimpleDateFormat("yyyyMMdd").parse(selectedDate)
                     val week: String = SimpleDateFormat("EEEE", Locale.KOREA).format(dateformat)
-                    intent.putExtra("selectedDate", selectedDate?.toInt())
+                    intent.putExtra("selectedDate", selectedDate)
                     intent.putExtra("week", week)
                     startActivity(intent)
                 }

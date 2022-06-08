@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.diaryapp.databinding.ActivityWritingDiaryBinding
 import kotlinx.coroutines.*
@@ -23,6 +24,7 @@ class WritingDiaryActivity: AppCompatActivity() {
 
         val diaryDB = DiaryDatabase.getDatabase(applicationContext)
 
+        val selectedDate = intent.getStringExtra("selectedDate")
         val year = intent.getStringExtra("year")
         val month = intent.getStringExtra("month")
         val day = intent.getStringExtra("day")
@@ -53,31 +55,21 @@ class WritingDiaryActivity: AppCompatActivity() {
 
 
 
-////        // db에 일기 추가
-//        binding.writingDiarySubmitBtn.setOnClickListener {
-//            CoroutineScope(Dispatchers.Default).launch {
-//                diaryDB?.DiaryDao()?.insert(DiaryTable(year.toString().toInt(),
-//                    month.toString().toInt(), day.toString().toInt(), week.toString().toInt()))
-//            }
-//        }
-
-//        binding.writingDiarySubmitBtn.setOnClickListener {
-//            val diary = DiaryTable(
-//                year.toString().toInt(),
-//                month.toString().toInt(),
-//                day.toString().toInt(),
-//                week.toString()
-//            )
-//            DiaryDatabase.getDatabase(this)!!.DiaryDao().insert(diary)
-//            startActivity(Intent(this, MainActivity::class.java))
-//        }
-
-//        binding.writingDiarySubmitBtn.setOnClickListener {
-//            val diary = DiaryTable(
-//                year.toString().toInt(), month.toString().toInt(), day.toString().toInt(), week.toString()
-//            )
-//            db!!.DiaryDao().insert(diary)
-//        }
+//        // db에 일기 추가
+        binding.writingDiarySubmitBtn.setOnClickListener {
+            val diary = DiaryTable(
+                selectedDate!!.toInt(),
+                year!!.toInt(),
+                month!!.toInt(),
+                day!!.toInt(),
+                week.toString(),
+                binding.writingDiaryContentEt.text.toString()
+            )
+            CoroutineScope(Dispatchers.IO).launch {
+                diaryDB!!.DiaryDao().insert(diary)
+            }
+            startActivity(Intent(this, MainActivity::class.java))
+        }
 
 //        // 갤러리에서 사진 추가 (오류)
 //        binding.writingDiaryAddImgBtn.setOnClickListener{
