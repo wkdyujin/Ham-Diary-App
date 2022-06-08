@@ -17,7 +17,7 @@ class ReadDiaryActivity : AppCompatActivity() {
         binding = ActivityReadDiaryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.writingDiaryContentEt.text = intent.getStringExtra("content")
+        binding.readingDiaryContentEt.text = intent.getStringExtra("content")
         val date = intent.getStringExtra("selectedDate")!!.toInt()
 
         val diaryDB = DiaryDatabase.getDatabase(applicationContext)!!
@@ -27,17 +27,25 @@ class ReadDiaryActivity : AppCompatActivity() {
                 val month = diaryDB!!.DiaryDao().getMonth(date)
                 val day = diaryDB!!.DiaryDao().getDay(date)
                 val content = diaryDB!!.DiaryDao().getDiaryContent(date)
-                binding.writingDiaryDateTv.text = "${year}년 ${month}월 ${day}일"
+                binding.readingDiaryDateTv.text = "${year}년 ${month}월 ${day}일"
                 val dayOfWeek = diaryDB!!.DiaryDao().getDayOfWeek(date)
-                binding.writingDiaryDayOfWeekTv.text = dayOfWeek
-                binding.writingDiaryContentEt.text = content
+                binding.readingDiaryDayOfWeekTv.text = dayOfWeek
+                binding.readingDiaryContentEt.text = content
             }.await()
 
             // 텍스트 누르면 글 수정
-            binding.writingDiaryContentEt.setOnClickListener {
+            binding.readingDiaryContentEt.setOnClickListener {
                 val intent = Intent(this@ReadDiaryActivity, WritingDiaryActivity::class.java)
                 intent.putExtra("diaryContent", diaryContent.toString())
                 startActivity(intent)
+            }
+
+            // 삭제
+            binding.readingDiaryContentDelBtn.setOnClickListener{
+                CoroutineScope(Dispatchers.IO).launch {
+                    diaryDB!!.DiaryDao().deleteByDate(date)
+                    startActivity(Intent(this@ReadDiaryActivity, MainActivity::class.java))
+                }
             }
         }
 

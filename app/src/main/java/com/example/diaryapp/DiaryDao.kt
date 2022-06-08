@@ -31,4 +31,7 @@ interface DiaryDao {
 
     @Query("SELECT dayOfWeek FROM DiaryTable WHERE date = :date")
     fun getDayOfWeek(date: Int): String
+
+    @Query("DELETE FROM DiaryTable WHERE date = :date")
+    fun deleteByDate(date: Int)
 }
