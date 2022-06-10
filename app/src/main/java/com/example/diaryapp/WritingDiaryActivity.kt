@@ -1,6 +1,8 @@
 package com.example.diaryapp
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,9 +15,6 @@ import org.w3c.dom.Entity
 class WritingDiaryActivity: AppCompatActivity() {
 
     lateinit var binding: ActivityWritingDiaryBinding
-//    private val OPEN_GALLERY = 1
-//    val db = DiaryDatabase.getDatabase(applicationContext) // 얘가 문제였다 (왜?)
-    val diaryDB = DiaryDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityWritingDiaryBinding.inflate(layoutInflater)
@@ -29,9 +28,15 @@ class WritingDiaryActivity: AppCompatActivity() {
         val month = intent.getStringExtra("month")
         val day = intent.getStringExtra("day")
         val week = intent.getStringExtra("week")
-        binding.writingDiaryDateTv.text = "${year}년 ${month}월 ${day}일"
+        val emotion = intent.getStringExtra("emotion")
 
+        binding.writingDiaryDateTv.text = "${year}년 ${month}월 ${day}일"
         binding.writingDiaryDayOfWeekTv.text = "${week}"
+
+        if (emotion != null) {
+            setEmotion(emotion)
+        }
+
 
         // 입력된 글자수 세기
         binding.writingDiaryContentEt.addTextChangedListener(object: TextWatcher{
@@ -53,8 +58,6 @@ class WritingDiaryActivity: AppCompatActivity() {
             }
         })
 
-
-
 //        // db에 일기 추가
         binding.writingDiarySubmitBtn.setOnClickListener {
             val diary = DiaryTable(
@@ -70,36 +73,32 @@ class WritingDiaryActivity: AppCompatActivity() {
             }
             startActivity(Intent(this, MainActivity::class.java))
         }
-
-//        // 갤러리에서 사진 추가 (오류)
-//        binding.writingDiaryAddImgBtn.setOnClickListener{
-//            openGallery()
-//        }
     }
 
-//    private fun openGallery() {
-//        val intent = Intent(Intent.ACTION_GET_CONTENT)
-//        intent.type = "image/*"
-//        startActivityForResult(intent, OPEN_GALLERY)
-//    }
-//
-//    @Override
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//
-//        if(requestCode == RESULT_OK) { //여기 안 됨
-//            if(requestCode == OPEN_GALLERY) {
-//                var currentImageUrl: Uri? = data?.data
-//                try {
-//                    val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, currentImageUrl)
-//                    binding.writingDiaryImgIv.visibility = View.VISIBLE
-//                    binding.writingDiaryImgIv.setImageBitmap(bitmap)
-//                } catch (e:Exception) {
-//                    e.printStackTrace()
-//                }
-//            }
-//        } else {
-//            Log.d ("ActivityResult", "something wrong")
-//        }
-//    }
+    fun setEmotion(emotion_name: String) {
+        if(emotion_name == "happy") {
+            binding.writingDiaryEmotionIv.setImageResource(R.drawable.emotion_happy_img)
+        }
+        if(emotion_name == "excited") {
+            binding.writingDiaryEmotionIv.setImageResource(R.drawable.emotion_excited_img)
+        }
+        if(emotion_name == "proud") {
+            binding.writingDiaryEmotionIv.setImageResource(R.drawable.emotion_proud_img)
+        }
+        if(emotion_name == "fine") {
+            binding.writingDiaryEmotionIv.setImageResource(R.drawable.emotion_fine_img)
+        }
+        if(emotion_name == "stress") {
+            binding.writingDiaryEmotionIv.setImageResource(R.drawable.emotion_stress_img)
+        }
+        if(emotion_name == "worried") {
+            binding.writingDiaryEmotionIv.setImageResource(R.drawable.emotion_worried_img)
+        }
+        if(emotion_name == "sad") {
+            binding.writingDiaryEmotionIv.setImageResource(R.drawable.emotion_sad_img)
+        }
+        if(emotion_name == "tired") {
+            binding.writingDiaryEmotionIv.setImageResource(R.drawable.emotion_tired_img)
+        }
+    }
 }

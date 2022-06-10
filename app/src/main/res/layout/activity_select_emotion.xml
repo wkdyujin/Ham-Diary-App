@@ -54,6 +54,7 @@
             android:scaleType="fitXY"
             android:background="@android:color/transparent"/>
         <ImageButton
+            android:id="@+id/emotion_excited_ib"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:src="@drawable/emotion_excited_img"
@@ -61,6 +62,7 @@
             android:background="@android:color/transparent"
             android:layout_marginStart="20dp" />
         <ImageButton
+            android:id="@+id/emotion_proud_ib"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:src="@drawable/emotion_proud_img"
@@ -68,6 +70,7 @@
             android:background="@android:color/transparent"
             android:layout_marginStart="20dp"/>
         <ImageButton
+            android:id="@+id/emotion_fine_ib"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:src="@drawable/emotion_fine_img"
@@ -77,6 +80,7 @@
 
         <!--  두번째 줄  -->
         <ImageButton
+            android:id="@+id/emotion_stress_ib"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:src="@drawable/emotion_stress_img"
@@ -84,6 +88,7 @@
             android:background="@android:color/transparent"
             android:layout_marginTop="32dp"/>
         <ImageButton
+            android:id="@+id/emotion_worried_ib"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:src="@drawable/emotion_worried_img"
@@ -92,6 +97,7 @@
             android:layout_marginTop="32dp"
             android:layout_marginStart="20dp"/>
         <ImageButton
+            android:id="@+id/emotion_sad_ib"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:src="@drawable/emotion_sad_img"
@@ -100,6 +106,7 @@
             android:layout_marginTop="32dp"
             android:layout_marginStart="20dp"/>
         <ImageButton
+            android:id="@+id/emotion_tired_ib"
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:src="@drawable/emotion_tired_img"

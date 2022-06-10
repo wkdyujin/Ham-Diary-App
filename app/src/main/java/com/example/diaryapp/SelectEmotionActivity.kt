@@ -1,15 +1,19 @@
 package com.example.diaryapp
 
+import android.R
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.diaryapp.databinding.ActivitySelectEmotionBinding
+import java.io.ByteArrayOutputStream
+
 
 class SelectEmotionActivity : AppCompatActivity() {
     lateinit var binding: ActivitySelectEmotionBinding
     override fun onCreate(savedInstanceState: Bundle?) {
-        val binding = ActivitySelectEmotionBinding.inflate(layoutInflater)
+        binding = ActivitySelectEmotionBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
@@ -21,8 +25,9 @@ class SelectEmotionActivity : AppCompatActivity() {
         val week = intent.getStringExtra("week")
         binding.selectEmotionYearTv.text = "${year}년 ${month}월 ${day}일"
 
+        val intent = Intent(this, WritingDiaryActivity::class.java)
+
         binding.selectEmotionBtn.setOnClickListener {
-            val intent = Intent(this, WritingDiaryActivity::class.java)
             intent.putExtra("selectedDate", selectedDate)
             intent.putExtra("year", year)
             intent.putExtra("month", month)
@@ -31,10 +36,38 @@ class SelectEmotionActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.emotionHappyIb.setOnClickListener {
-            // 이미지 사진 크기 키워야 함
-            binding.selectEmotionBtn.isEnabled = true
 
+        binding.emotionHappyIb.setOnClickListener {
+            binding.selectEmotionBtn.isEnabled = true
+            intent.putExtra("emotion", "happy")
+        }
+        binding.emotionExcitedIb.setOnClickListener {
+            binding.selectEmotionBtn.isEnabled = true
+            intent.putExtra("emotion", "excited")
+        }
+        binding.emotionProudIb.setOnClickListener {
+            binding.selectEmotionBtn.isEnabled = true
+            intent.putExtra("emotion", "proud")
+        }
+        binding.emotionFineIb.setOnClickListener {
+            binding.selectEmotionBtn.isEnabled = true
+            intent.putExtra("emotion", "fine")
+        }
+        binding.emotionStressIb.setOnClickListener {
+            binding.selectEmotionBtn.isEnabled = true
+            intent.putExtra("emotion", "stress")
+        }
+        binding.emotionWorriedIb.setOnClickListener {
+            binding.selectEmotionBtn.isEnabled = true
+            intent.putExtra("emotion", "worried")
+        }
+        binding.emotionSadIb.setOnClickListener {
+            binding.selectEmotionBtn.isEnabled = true
+            intent.putExtra("emotion", "sad")
+        }
+        binding.emotionTiredIb.setOnClickListener {
+            binding.selectEmotionBtn.isEnabled = true
+            intent.putExtra("emotion", "tired")
         }
     }
 }

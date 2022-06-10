@@ -33,7 +33,8 @@ class MainActivity : AppCompatActivity() {
                     6,
                     6,
                     "월요일",
-                    "앱 개발은 어려운 거구나..."
+                    "앱 개발은 어려운 거구나...",
+                    R.drawable.emotion_sad_img
                 ))
 
                 diaryDB!!.DiaryDao().insert(DiaryTable(
@@ -42,7 +43,8 @@ class MainActivity : AppCompatActivity() {
                     6,
                     5,
                     "일요일",
-                    "room이랑 코루틴 어렵다. 햄스터 그림 귀엽게 그려놨는데 쓸 수 있겠지? 엉..엉.."
+                    "room이랑 코루틴 어렵다. 스레드 다루는 거 어렵다아",
+                    R.drawable.emotion_sad_img
                 ))
             }
         }

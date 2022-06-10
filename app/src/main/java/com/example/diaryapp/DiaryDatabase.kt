@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [DiaryTable::class], version = 4) //어떤 테이블이 데이터베이스에 들어갈지
+@Database(entities = [DiaryTable::class], version = 5) //어떤 테이블이 데이터베이스에 들어갈지
 abstract class DiaryDatabase: RoomDatabase() {
     abstract fun DiaryDao(): DiaryDao
 
