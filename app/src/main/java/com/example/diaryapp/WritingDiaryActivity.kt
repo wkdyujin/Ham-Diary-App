@@ -75,7 +75,7 @@ class WritingDiaryActivity: AppCompatActivity() {
             CoroutineScope(Dispatchers.IO).launch {
                 diaryDB!!.DiaryDao().insert(diary)
             }
-            Toast.makeText(this, "${binding.writingDiaryDateTv.text}ㅁㄴ 일기를 썼어요", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "${binding.writingDiaryDateTv.text} 일기를 썼어요", Toast.LENGTH_LONG).show()
             startActivity(Intent(this, MainActivity::class.java))
         }
     }

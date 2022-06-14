@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <!--  MyColor  -->
+    <color name="app_color">#efe1d7</color>
     <color name="happy">#D34D4D</color>
     <color name="excited">#D5A004</color>
     <color name="proud">#E38006</color>

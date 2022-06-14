@@ -7,6 +7,14 @@
     tools:context=".MainActivity"
     android:background="@drawable/grid_white_img">
 
+<!--    <Button-->
+<!--        android:id="@+id/delete_all"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="전체삭제"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+
     <CalendarView
         android:id="@+id/main_calendar"
         android:layout_width="match_parent"
@@ -20,11 +28,14 @@
         android:id="@+id/main_writing_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="42dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/main_calendar"
         app:layout_constraintBottom_toBottomOf="parent"
         android:text="오늘 일기 쓰기"
+        android:textColor="@color/tired"
+        android:backgroundTint="@color/app_color"
         android:textSize="24sp"
         android:fontFamily="@font/jonghakseng"/>
 

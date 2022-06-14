@@ -37,4 +37,7 @@ interface DiaryDao {
 
     @Query("DELETE FROM DiaryTable WHERE date = :date")
     fun deleteByDate(date: Int)
+
+    @Query("DELETE FROM DiaryTable")
+    fun deleteAll()
 }

@@ -83,6 +83,8 @@
         android:layout_height="wrap_content"
         android:text="삭제"
         android:textSize="24sp"
+        android:textColor="@color/tired"
+        android:backgroundTint="@color/app_color"
         android:fontFamily="@font/jonghakseng"
         android:layout_marginEnd="12dp"
         app:layout_constraintEnd_toEndOf="parent"

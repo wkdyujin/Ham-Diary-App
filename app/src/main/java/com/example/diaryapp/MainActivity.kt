@@ -23,31 +23,13 @@ class MainActivity : AppCompatActivity() {
 
         val diaryDB = DiaryDatabase.getDatabase(applicationContext)!!
 
-//        // 더미 데이터 추가
-//        CoroutineScope(Dispatchers.IO).launch { //launch: 결과 반환 X
-//            val diarys = diaryDB!!.DiaryDao().getDiarys()
-//            if (diarys.isEmpty()) {
-//                diaryDB!!.DiaryDao().insert(DiaryTable(
-//                    20220606,
-//                    2022,
-//                    6,
-//                    6,
-//                    "월요일",
-//                    "앱 개발은 어려운 거구나...",
-//                    "sad"
-//                ))
-//
-//                diaryDB!!.DiaryDao().insert(DiaryTable(
-//                    20220605,
-//                    2022,
-//                    6,
-//                    5,
-//                    "일요일",
-//                    "room이랑 코루틴 어렵다. 스레드 다루는 거 어렵다아",
-//                    "worried"
-//                ))
+        // DB table 전체 삭제 코드
+//        binding.deleteAll.setOnClickListener {
+//            CoroutineScope(Dispatchers.IO).launch {
+//                diaryDB!!.DiaryDao().deleteAll()
 //            }
 //        }
+
 
         binding.mainCalendar.setOnDateChangeListener { calendarView, year, month, day ->
             val date = Date(year.toString(), (month+1).toString(), day.toString())
