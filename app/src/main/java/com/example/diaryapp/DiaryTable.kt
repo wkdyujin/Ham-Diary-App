@@ -12,5 +12,5 @@ data class DiaryTable(
     val day: Int,
     val dayOfWeek: String,
     val diary: String,
-    var emotionImg: Int? = null
+    var emotion: String
 )

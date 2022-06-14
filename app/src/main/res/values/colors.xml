@@ -7,4 +7,14 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!--  MyColor  -->
+    <color name="happy">#D34D4D</color>
+    <color name="excited">#D5A004</color>
+    <color name="proud">#E38006</color>
+    <color name="fine">#009655</color>
+    <color name="stress">#930303</color>
+    <color name="worried">#51299A</color>
+    <color name="sad">#1375C3</color>
+    <color name="tired">#555555</color>
 </resources>
