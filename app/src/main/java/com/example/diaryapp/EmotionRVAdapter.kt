@@ -1,24 +1,36 @@
 package com.example.diaryapp
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.diaryapp.databinding.ItemEmotionsBinding
 
-class EmotionRVAdapter(private var dataSet: ArrayList<Diary>) : RecyclerView.Adapter<EmotionRVAdapter.ViewHolder>(){
-    class ViewHolder(val binding: ItemEmotionsBinding): RecyclerView.ViewHolder(binding.root)
+class EmotionRVAdapter(private var dataSet: MutableList<DiaryTable>) : RecyclerView.Adapter<EmotionRVAdapter.ViewHolder>(){
+    class ViewHolder(val binding: ItemEmotionsBinding): RecyclerView.ViewHolder(binding.root) // 각각의 뷰를 보관하는 객체
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val binding: ItemEmotionsBinding = ItemEmotionsBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return ViewHolder(binding)
     }
 
-    fun setList(newList: ArrayList<Diary>) {
+    fun setList(newList: MutableList<DiaryTable>) {
         this.dataSet = newList
     }
 
-    fun getElement(pos:Int): Diary {
+    fun getElement(pos:Int): DiaryTable {
         return dataSet[pos]
+    }
+
+    private lateinit var itemClickListener: OnItemClickListener
+
+    interface OnItemClickListener {
+        fun onClick(v: View, position: Int)
+    }
+
+    // 리사이클러뷰 아이템 클릭 시
+    fun setItemClickListener(onItemClickListener: OnItemClickListener) {
+        this.itemClickListener = onItemClickListener
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -27,6 +39,10 @@ class EmotionRVAdapter(private var dataSet: ArrayList<Diary>) : RecyclerView.Ada
         binding.itemEmotionImgIv.setImageResource(setEmotion(emotion))
         binding.date.text = "${dataSet[position].month}월 ${dataSet[position].day}일"
         binding.week.text = dataSet[position].dayOfWeek
+
+        binding.item.setOnClickListener {
+            itemClickListener.onClick(it, position)
+        }
     }
 
     override fun getItemCount(): Int = dataSet.size

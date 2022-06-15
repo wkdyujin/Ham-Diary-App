@@ -14,7 +14,7 @@ interface DiaryDao {
     @Delete
     fun delete(diary: DiaryTable)
 
-    @Query("SELECT * FROM DiaryTable")
+    @Query("SELECT * FROM DiaryTable ORDER BY date DESC")
     fun getDiarys(): MutableList<DiaryTable>
 
     @Query("SELECT diary FROM DiaryTable WHERE date = :date")

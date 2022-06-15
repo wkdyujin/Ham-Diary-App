@@ -74,7 +74,7 @@ class WritingDiaryActivity: AppCompatActivity() {
             binding.writingDiaryContentEt.setText(diary.toString() + str_date)
         }
 
-//        // db에 일기 추가
+        // db에 일기 추가
         binding.writingDiarySubmitBtn.setOnClickListener {
             val diary = DiaryTable(
                 selectedDate!!.toInt(),
