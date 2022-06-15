@@ -11,9 +11,12 @@ import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.diaryapp.databinding.ActivityWritingDiaryBinding
 import kotlinx.coroutines.*
 import org.w3c.dom.Entity
+import java.text.SimpleDateFormat
+import java.util.*
 
 class WritingDiaryActivity: AppCompatActivity() {
 
@@ -61,6 +64,16 @@ class WritingDiaryActivity: AppCompatActivity() {
             }
         })
 
+        // 시계 이미지
+        binding.writingDiaryAddTimeBtn.setOnClickListener {
+            val long_now = System.currentTimeMillis()
+            val t_date = Date(long_now)
+            val t_dateFormat = SimpleDateFormat("kk:mm", Locale("ko", "KR"))
+            var diary = binding.writingDiaryContentEt.text
+            val str_date = t_dateFormat.format(t_date)
+            binding.writingDiaryContentEt.setText(diary.toString() + str_date)
+        }
+
 //        // db에 일기 추가
         binding.writingDiarySubmitBtn.setOnClickListener {
             val diary = DiaryTable(
@@ -75,6 +88,7 @@ class WritingDiaryActivity: AppCompatActivity() {
             CoroutineScope(Dispatchers.IO).launch {
                 diaryDB!!.DiaryDao().insert(diary)
             }
+
             Toast.makeText(this, "${binding.writingDiaryDateTv.text} 일기를 썼어요", Toast.LENGTH_LONG).show()
             startActivity(Intent(this, MainActivity::class.java))
         }

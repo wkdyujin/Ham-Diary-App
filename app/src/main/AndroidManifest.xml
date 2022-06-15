@@ -15,7 +15,7 @@
         android:theme="@style/Theme.DiaryApp">
 
         <activity android:name=".MainActivity"></activity>
-
+        <activity android:name=".EmotionsActivity"></activity>
         <activity android:name=".SelectEmotionActivity"></activity>
         <activity android:name=".WritingDiaryActivity"></activity>
         <activity android:name=".ReadDiaryActivity"></activity>

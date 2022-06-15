@@ -30,6 +30,11 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        }
 
+        //감정 모아보기
+        binding.viewEmotionsBtn.setOnClickListener {
+            startActivity(Intent(this, EmotionsActivity::class.java))
+        }
+
 
         binding.mainCalendar.setOnDateChangeListener { calendarView, year, month, day ->
             val date = Date(year.toString(), (month+1).toString(), day.toString())
